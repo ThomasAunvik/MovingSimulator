@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityStandardAssets.CrossPlatformInput;
+using MovingSim.UI;
 
 namespace MovingSim.Player
 {
@@ -33,6 +34,8 @@ namespace MovingSim.Player
 
         private Ray mouseRay;
 
+        [SerializeField] private UIManager uiManager;
+
         private void Start()
         {
             character = GetComponent<ThirdPersonCharacter>();
@@ -47,6 +50,22 @@ namespace MovingSim.Player
             aiAgent.updatePosition = true;
         }
 
+        private void Update()
+        {
+            if (!uiManager.uiOpen)
+            {
+                switch (inputType)
+                {
+                    case PlayerInputType.Mouse:
+                        UpdateMouseMovement();
+                        break;
+                    case PlayerInputType.Touch:
+                        UpdateTouchMovement();
+                        break;
+                }
+            }
+        }
+
         private void FixedUpdate()
         {
             //if(uiOpen) return;
@@ -57,23 +76,23 @@ namespace MovingSim.Player
             if (Mathf.Abs(v) > 0 || Mathf.Abs(h) > 0)
             {
                 inputType = PlayerInputType.Keyboard;
-            }else if (Input.GetMouseButton(0)) // TODO: Check if user also has UI open.
+            }else if (Input.GetMouseButton(0) && !uiManager.uiOpen) // TODO: Check if user also has UI open.
             {
                 inputType = PlayerInputType.Mouse;
             }
-            else if(Input.touchCount > 0)
+            else if(Input.touchCount > 0 && !uiManager.uiOpen)
             {
                 inputType = PlayerInputType.Touch;
             }
 
-            switch (inputType)
+            if (!uiManager.uiOpen)
             {
-                case PlayerInputType.Keyboard:
-                    UpdateKeyboardMovement(v, h);
-                    break;
-                case PlayerInputType.Mouse:
-                    UpdateMouseMovement();
-                    break;
+                switch (inputType)
+                {
+                    case PlayerInputType.Keyboard:
+                        UpdateKeyboardMovement(v, h);
+                        break;
+                }
             }
         }
 
@@ -150,16 +169,25 @@ namespace MovingSim.Player
             {
                 target.position = hit.point;
 
-                if (currentItemTarget != null)
-                {
-                    currentItemTarget.HideOutline();
-                }
-
                 Item item = hit.transform.GetComponent<Item>();
                 if (item != null)
                 {
-                    item.ShowOutline();
-                    currentItemTarget = item;
+                    if (item == currentItemTarget && !item.destroying)
+                    {
+                        uiManager.OpenThrowOrKeep(item);
+                        item.HideOutline();
+                    }
+                    else if(!item.destroying)
+                    {
+                        if(currentItemTarget != null)
+                        {
+                            currentItemTarget.HideOutline();
+                        }
+                        item.ShowOutline();
+                        currentItemTarget = item;
+
+                        uiManager.OpenDialogue(item);
+                    }
                 }
             }
         }
@@ -167,6 +195,16 @@ namespace MovingSim.Player
         public void SetTarget(Transform target)
         {
             this.target = target;
+        }
+        
+        public void UnselectItem()
+        {
+            if (currentItemTarget != null)
+            {
+                uiManager.CloseDialogue();
+                currentItemTarget.HideOutline();
+                currentItemTarget = null;
+            }
         }
 
         /*public void OnTriggerEnter(Collider collider)
