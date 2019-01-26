@@ -79,11 +79,11 @@ namespace MovingSim.Player
             if (Mathf.Abs(v) > 0 || Mathf.Abs(h) > 0)
             {
                 inputType = PlayerInputType.Keyboard;
-            }else if (Input.GetMouseButton(0) && !uiManager.uiOpen) // TODO: Check if user also has UI open.
+            }else if (Input.GetMouseButton(0) && (uiManager == null || !uiManager.uiOpen)) // TODO: Check if user also has UI open.
             {
                 inputType = PlayerInputType.Mouse;
             }
-            else if(Input.touchCount > 0 && !uiManager.uiOpen)
+            else if(Input.touchCount > 0 && (uiManager == null || !uiManager.uiOpen))
             {
                 inputType = PlayerInputType.Touch;
             }
@@ -183,7 +183,7 @@ namespace MovingSim.Player
                 {
                     if (item == currentItemTarget && !item.destroying && !item.isKeeping)
                     {
-                        uiManager.OpenThrowOrKeep(item);
+                        if (uiManager != null) uiManager.OpenThrowOrKeep(item);
                         item.HideOutline();
                     }
                     else if(!item.destroying && !item.isKeeping)
@@ -195,7 +195,7 @@ namespace MovingSim.Player
                         item.ShowOutline();
                         currentItemTarget = item;
 
-                        uiManager.OpenDialogue(item);
+                        if(uiManager != null) uiManager.OpenDialogue(item);
                     }
                 }
             }
@@ -210,7 +210,7 @@ namespace MovingSim.Player
         {
             if (currentItemTarget != null)
             {
-                uiManager.CloseDialogue();
+                if (uiManager != null) uiManager.CloseDialogue();
                 currentItemTarget.HideOutline();
                 currentItemTarget = null;
             }
