@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
             for(int i = 0; i < rigidbodies.Length; i++)
             {
                 Rigidbody rb = rigidbodies[i];
+                if (rb == null) continue;
                 rb.useGravity = true;
                 rb.isKinematic = false;
 
@@ -50,8 +51,7 @@ public class LevelManager : MonoBehaviour
     IEnumerator LoadNextLevelAsync()
     {
         currentScene++;
-        string level = sceneLevels[currentScene];
-        int previousScene = currentScene;
+        int previousScene = currentScene - 1;
         if(previousScene > 0)
         {
             yield return new WaitForSeconds(1);
@@ -62,8 +62,9 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        if (currentScene < sceneLevels.Length - 1)
+        if (currentScene < sceneLevels.Length)
         {
+            string level = sceneLevels[currentScene];
             AsyncOperation sceneOperation = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
             sceneOperation.completed += SceneLoaded;
             while (!sceneOperation.isDone)
