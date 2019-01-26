@@ -4,12 +4,20 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 1
+<<<<<<< HEAD
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LiberationSans SDF Material
   m_Shader: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
   m_ShaderKeywords: OUTLINE_ON _EMISSION
+=======
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: LiberationSans SDF Material
+  m_Shader: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
+  m_ShaderKeywords: _EMISSION
+>>>>>>> e63d526f1314f4c40d71c29094a50dfb9e14eee6
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -102,7 +110,11 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
+<<<<<<< HEAD
     - _OutlineWidth: 0.133
+=======
+    - _OutlineWidth: 0
+>>>>>>> e63d526f1314f4c40d71c29094a50dfb9e14eee6
     - _Parallax: 0.02
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
@@ -149,9 +161,14 @@ Material:
 --- !u!28 &2846298
 Texture2D:
   m_ObjectHideFlags: 1
+<<<<<<< HEAD
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+=======
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+>>>>>>> e63d526f1314f4c40d71c29094a50dfb9e14eee6
   m_Name: LiberationSans SDF Atlas
   m_ImageContentsHash:
     serializedVersion: 2
@@ -165,8 +182,11 @@ Texture2D:
   m_TextureFormat: 1
   m_MipCount: 1
   m_IsReadable: 0
+<<<<<<< HEAD
   m_StreamingMipmaps: 0
   m_StreamingMipmapsPriority: 0
+=======
+>>>>>>> e63d526f1314f4c40d71c29094a50dfb9e14eee6
   m_AlphaIsTransparency: 0
   m_ImageCount: 1
   m_TextureDimension: 2
@@ -189,9 +209,14 @@ Texture2D:
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
+<<<<<<< HEAD
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+=======
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+>>>>>>> e63d526f1314f4c40d71c29094a50dfb9e14eee6
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
