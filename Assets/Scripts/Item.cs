@@ -2,26 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+namespace MovingSim
 {
-    private MeshRenderer renderer;
-
-    private Material[] originalMaterials;
-    [SerializeField] private Material[] outlineMaterials;
-
-    void Start()
+    public class Item : MonoBehaviour
     {
-        renderer = GetComponent<MeshRenderer>();
-        originalMaterials = renderer.materials;
-    }
+        private MeshRenderer meshRenderer;
+        private MeshFilter meshFilter;
 
-    public void ShowOutline()
-    {
-        renderer.materials = outlineMaterials;
-    }
+        private Material[] originalMaterials;
+        [SerializeField] private Material[] outlineMaterials;
 
-    public void HideOutline()
-    {
-        renderer.materials = originalMaterials;
+        public string itemName;
+        public string dialogue;
+        public string description;
+
+        public bool destroying { get; private set; }
+
+        void Start()
+        {
+            meshRenderer = GetComponent<MeshRenderer>();
+            originalMaterials = meshRenderer.materials;
+
+            meshFilter = GetComponent<MeshFilter>();
+        }
+
+        public void ShowOutline()
+        {
+            meshRenderer.materials = outlineMaterials;
+        }
+
+        public void HideOutline()
+        {
+            meshRenderer.materials = originalMaterials;
+        }
+
+        public void Trash()
+        {
+            // TODO: SPAWN EFFECT
+            destroying = true;
+            Destroy(gameObject, 0.5f);
+        }
+
+        public void Keep()
+        {
+
+        }
+
+        public Material[] GetMaterials()
+        {
+            return originalMaterials;
+        }
+
+        public Mesh GetMesh()
+        {
+            return meshFilter.mesh;
+        }
     }
 }
