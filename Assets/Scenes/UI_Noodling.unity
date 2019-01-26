@@ -1676,23 +1676,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6244891591457358833}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1457734781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457734776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df473515aeaa3414ab8007a35391e350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMaterials:
-  - {fileID: 2100000, guid: 400f89e5076a0584e94103aaf4e03869, type: 2}
-  itemName: 
-  dialogue: Test
-  description: Test2
 --- !u!208 &1457734782
 NavMeshObstacle:
   m_ObjectHideFlags: 0

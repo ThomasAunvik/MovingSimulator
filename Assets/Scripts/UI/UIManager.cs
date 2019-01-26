@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 
 using MovingSim.Player;
+using System.Collections;
 
 namespace MovingSim.UI
 {
@@ -35,8 +36,20 @@ namespace MovingSim.UI
 
         public void OpenDialogue(Item item)
         {
+            StartCoroutine(DisplayText(item.dialogue, dialogueText));
             dialogue.SetActive(true);
-            dialogueText.text = item.dialogue;
+        }
+
+        IEnumerator DisplayText(string inText, TMP_Text outText)
+        {
+            outText.text = "";
+            yield return new WaitForSeconds(0.4f);
+            for(int wordIndex = 0; wordIndex < inText.Length; wordIndex++)
+            {
+                char character = inText[wordIndex];
+                outText.text += character;
+                yield return new WaitForSeconds(0.05f);
+            }
         }
 
         public void CloseDialogue()
@@ -46,11 +59,13 @@ namespace MovingSim.UI
 
         public void OpenThrowOrKeep(Item item)
         {
+            StartCoroutine(DisplayText(item.description, descriptionText));
+
             dialogue.SetActive(false);
             throwOrKeep.SetActive(true);
 
             if(nameText != null) nameText.text = item.itemName;
-            descriptionText.text = item.description;
+
             uiOpen = true;
             currentItem = item;
 

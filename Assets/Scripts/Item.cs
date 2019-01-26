@@ -6,6 +6,8 @@ namespace MovingSim
 {
     public class Item : MonoBehaviour
     {
+        public static List<Item> itemList = new List<Item>();
+
         private MeshRenderer meshRenderer;
         private MeshFilter meshFilter;
 
@@ -17,6 +19,7 @@ namespace MovingSim
         public string description;
 
         public bool destroying { get; private set; }
+        public bool isKeeping { get; private set; }
 
         void Start()
         {
@@ -24,6 +27,8 @@ namespace MovingSim
             originalMaterials = meshRenderer.materials;
 
             meshFilter = GetComponent<MeshFilter>();
+
+            itemList.Add(this);
         }
 
         public void ShowOutline()
@@ -39,13 +44,14 @@ namespace MovingSim
         public void Trash()
         {
             // TODO: SPAWN EFFECT
+            itemList.Remove(this);
             destroying = true;
             Destroy(gameObject, 0.5f);
         }
 
         public void Keep()
         {
-
+            isKeeping = true;
         }
 
         public Material[] GetMaterials()
