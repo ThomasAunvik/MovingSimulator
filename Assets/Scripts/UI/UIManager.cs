@@ -5,6 +5,8 @@ using TMPro;
 using MovingSim.Player;
 using System.Collections;
 
+using UnityEngine.UI;
+
 namespace MovingSim.UI
 {
     public class UIManager : MonoBehaviour
@@ -17,6 +19,8 @@ namespace MovingSim.UI
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text descriptionText;
 
+        [SerializeField] private Button letGoButton;
+
         [SerializeField] private MeshFilter meshFilter;
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private Transform meshTransfrom;
@@ -25,6 +29,9 @@ namespace MovingSim.UI
         public bool uiOpen { get; private set; }
 
         private Item currentItem;
+
+        private Coroutine dialogueEnumerator;
+        private Coroutine descriptionEnumerator;
 
         private void LateUpdate()
         {
@@ -36,7 +43,7 @@ namespace MovingSim.UI
 
         public void OpenDialogue(Item item)
         {
-            StartCoroutine(DisplayText(item.dialogue, dialogueText));
+            dialogueEnumerator = StartCoroutine(DisplayText(item.dialogue, dialogueText));
             dialogue.SetActive(true);
         }
 
@@ -55,11 +62,12 @@ namespace MovingSim.UI
         public void CloseDialogue()
         {
             dialogue.SetActive(false);
+            if(dialogueEnumerator != null) StopCoroutine(dialogueEnumerator);
         }
 
         public void OpenThrowOrKeep(Item item)
         {
-            StartCoroutine(DisplayText(item.description, descriptionText));
+            descriptionEnumerator = StartCoroutine(DisplayText(item.description, descriptionText));
 
             dialogue.SetActive(false);
             throwOrKeep.SetActive(true);
@@ -78,14 +86,40 @@ namespace MovingSim.UI
 
         public void CloseThrowOrKeeep()
         {
+            if (player == null)
+            {
+                player = FindObjectOfType<PlayerController>();
+            }
+
             throwOrKeep.SetActive(false);
             uiOpen = false;
             currentItem = null;
             player.UnselectItem();
+
+            if (descriptionEnumerator != null) StopCoroutine(descriptionEnumerator);
+
+            int notCompleted = 0;
+            for(int i = 0; i < Item.itemList.Count; i++)
+            {
+                Item item = Item.itemList[i];
+                if(item.destroying || item.isKeeping) {
+                    continue;
+                }
+                notCompleted++;
+            }
+
+            if(notCompleted == 0)
+            {
+                UnlockLetGo();
+            }
         }
 
         public void TrashCurrentItem()
         {
+            if(player == null)
+            {
+                player = FindObjectOfType<PlayerController>();
+            }
             player.UnselectItem();
             currentItem.Trash();
             CloseThrowOrKeeep();
@@ -93,8 +127,18 @@ namespace MovingSim.UI
 
         public void KeepCurrentItem()
         {
+            if (player == null)
+            {
+                player = FindObjectOfType<PlayerController>();
+            }
             currentItem.Keep();
             CloseThrowOrKeeep();
+        }
+
+        private void UnlockLetGo()
+        {
+            letGoButton.gameObject.SetActive(true);
+            letGoButton.onClick.AddListener(() => { letGoButton.gameObject.SetActive(false); LevelManager.instance.EndGame(); });
         }
     }
 }
