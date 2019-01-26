@@ -48,21 +48,24 @@ namespace MovingSim.Player
 
             aiAgent.updateRotation = false;
             aiAgent.updatePosition = true;
+
+            if(uiManager == null)
+            {
+                uiManager = FindObjectOfType<UIManager>();
+            }
         }
 
         private void Update()
         {
-            if (!uiManager.uiOpen)
+            
+            switch (inputType)
             {
-                switch (inputType)
-                {
-                    case PlayerInputType.Mouse:
-                        UpdateMouseMovement();
-                        break;
-                    case PlayerInputType.Touch:
-                        UpdateTouchMovement();
-                        break;
-                }
+                case PlayerInputType.Mouse:
+                    UpdateMouseMovement();
+                    break;
+                case PlayerInputType.Touch:
+                    UpdateTouchMovement();
+                    break;
             }
         }
 
@@ -85,7 +88,7 @@ namespace MovingSim.Player
                 inputType = PlayerInputType.Touch;
             }
 
-            if (!uiManager.uiOpen)
+            if (uiManager == null || !uiManager.uiOpen)
             {
                 switch (inputType)
                 {
@@ -114,9 +117,12 @@ namespace MovingSim.Player
 
         private void UpdateMouseMovement()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (uiManager == null || !uiManager.uiOpen)
             {
-                SetScreenTargetPosition(Input.mousePosition);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SetScreenTargetPosition(Input.mousePosition);
+                }
             }
 
             UpdateAIMovement();
@@ -124,12 +130,15 @@ namespace MovingSim.Player
 
         private void UpdateTouchMovement()
         {
-            if (Input.touches.Length > 0)
+            if (uiManager == null || !uiManager.uiOpen)
             {
-                Touch touch = Input.touches[0];
-                if (touch.phase == TouchPhase.Began)
+                if (Input.touches.Length > 0)
                 {
-                    SetScreenTargetPosition(touch.position);
+                    Touch touch = Input.touches[0];
+                    if (touch.phase == TouchPhase.Began)
+                    {
+                        SetScreenTargetPosition(touch.position);
+                    }
                 }
             }
             
@@ -172,12 +181,12 @@ namespace MovingSim.Player
                 Item item = hit.transform.GetComponent<Item>();
                 if (item != null)
                 {
-                    if (item == currentItemTarget && !item.destroying)
+                    if (item == currentItemTarget && !item.destroying && !item.isKeeping)
                     {
                         uiManager.OpenThrowOrKeep(item);
                         item.HideOutline();
                     }
-                    else if(!item.destroying)
+                    else if(!item.destroying && !item.isKeeping)
                     {
                         if(currentItemTarget != null)
                         {
