@@ -22,6 +22,7 @@ namespace MovingSim.Player
         private ThirdPersonCharacter character;
         public UnityEngine.AI.NavMeshAgent aiAgent { get; private set; }
         public Transform target;
+        public float moveSpeedMultiplier = 1f;
 
         private Vector3 camForward;
         private Vector3 move;
@@ -89,7 +90,7 @@ namespace MovingSim.Player
                 move = v * Vector3.forward + h * Vector3.right;
             }
 
-            character.Move(move, false, false);
+            character.Move(move * moveSpeedMultiplier, false, false);
         }
 
         private void UpdateMouseMovement()
