@@ -28,9 +28,9 @@ namespace MovingSim.Player
         private Vector3 camForward;
         private Vector3 move;
 
-        private PlayerInputType inputType = PlayerInputType.Touch;
+        public PlayerInputType inputType { get; private set; }
 
-        private Item currentItemTarget;
+        private IItem currentItemTarget;
 
         private Ray mouseRay;
 
@@ -178,15 +178,15 @@ namespace MovingSim.Player
             {
                 target.position = hit.point;
 
-                Item item = hit.transform.GetComponent<Item>();
+                IItem item = hit.transform.GetComponent<IItem>();
                 if (item != null)
                 {
-                    if (item == currentItemTarget && !item.destroying && !item.isKeeping)
+                    if (item == currentItemTarget && !item.IsDestroying() && !item.IsKeeping())
                     {
                         if (uiManager != null) uiManager.OpenThrowOrKeep(item);
                         item.HideOutline();
                     }
-                    else if(!item.destroying && !item.isKeeping)
+                    else if (!item.IsDestroying() && !item.IsKeeping())
                     {
                         if(currentItemTarget != null)
                         {
@@ -216,30 +216,30 @@ namespace MovingSim.Player
             }
         }
 
-        /*public void OnTriggerEnter(Collider collider)
+        public void OnTriggerEnter(Collider collider)
         {
-            Item item = collider.transform.GetComponent<Item>();
+            ItemMovementTrigger item = collider.transform.GetComponent<ItemMovementTrigger>();
             if (item != null)
             {
                 if(currentItemTarget != null) currentItemTarget.HideOutline();
 
                 item.ShowOutline();
-                currentItemTarget = item;
+                currentItemTarget = item.item;
             }
         }
 
         public void OnTriggerExit(Collider collider)
         {
-            Item item = collider.transform.GetComponent<Item>();
+            ItemMovementTrigger item = collider.transform.GetComponent<ItemMovementTrigger>();
             if (item != null)
             {
-                if (currentItemTarget == item)
+                if (currentItemTarget == item.item)
                 {
                     currentItemTarget = null;
                 }
                 item.HideOutline();
             }
-        }*/
+        }
 
         public void OnDrawGizmos()
         {

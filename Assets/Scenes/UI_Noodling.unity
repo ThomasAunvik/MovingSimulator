@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.03071345, g: 0.03071345, b: 0.03071345, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -180,6 +180,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6122065923724032717, guid: e9d9d7c026c38a24f83c74d9932b681c,
+        type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122065923724032717, guid: e9d9d7c026c38a24f83c74d9932b681c,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122065923724032717, guid: e9d9d7c026c38a24f83c74d9932b681c,
+        type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 0.382
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122065923724032717, guid: e9d9d7c026c38a24f83c74d9932b681c,
+        type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122065923724032717, guid: e9d9d7c026c38a24f83c74d9932b681c,
+        type: 3}
+      propertyPath: m_Shadows.m_NormalBias
+      value: 0.415
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122065923724032717, guid: e9d9d7c026c38a24f83c74d9932b681c,
+        type: 3}
+      propertyPath: m_Shadows.m_Bias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122065923724032717, guid: e9d9d7c026c38a24f83c74d9932b681c,
+        type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9d9d7c026c38a24f83c74d9932b681c, type: 3}
 --- !u!1001 &632536151
@@ -272,7 +307,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 8b7d27a65de2e344cb24a5aca4c5bade, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: 8b7d27a65de2e344cb24a5aca4c5bade, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

@@ -28,7 +28,7 @@ namespace MovingSim.UI
 
         public bool uiOpen { get; private set; }
 
-        private Item currentItem;
+        private IItem currentItem;
 
         private Coroutine dialogueEnumerator;
         private Coroutine descriptionEnumerator;
@@ -41,9 +41,10 @@ namespace MovingSim.UI
             }
         }
 
-        public void OpenDialogue(Item item)
+        public void OpenDialogue(IItem item)
         {
-            dialogueEnumerator = StartCoroutine(DisplayText(item.dialogue, dialogueText));
+            if (dialogueEnumerator != null) StopCoroutine(dialogueEnumerator);
+            dialogueEnumerator = StartCoroutine(DisplayText(item.GetDialogue(), dialogueText));
             dialogue.SetActive(true);
         }
 
@@ -65,14 +66,15 @@ namespace MovingSim.UI
             if(dialogueEnumerator != null) StopCoroutine(dialogueEnumerator);
         }
 
-        public void OpenThrowOrKeep(Item item)
+        public void OpenThrowOrKeep(IItem item)
         {
-            descriptionEnumerator = StartCoroutine(DisplayText(item.description, descriptionText));
+            if (descriptionEnumerator != null) StopCoroutine(descriptionEnumerator);
+            descriptionEnumerator = StartCoroutine(DisplayText(item.GetDescription(), descriptionText));
 
             dialogue.SetActive(false);
             throwOrKeep.SetActive(true);
 
-            if(nameText != null) nameText.text = item.itemName;
+            if(nameText != null) nameText.text = item.GetName();
 
             uiOpen = true;
             currentItem = item;
@@ -81,7 +83,7 @@ namespace MovingSim.UI
             meshRenderer.materials = item.GetMaterials();
 
             meshTransfrom.rotation = Quaternion.identity;
-            meshTransfrom.localScale = item.transform.localScale;
+            meshTransfrom.localScale = item.GetItem().transform.localScale;
         }
 
         public void CloseThrowOrKeeep()

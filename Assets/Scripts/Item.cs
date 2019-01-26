@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MovingSim
 {
-    public class Item : MonoBehaviour
+    public class Item : MonoBehaviour, IItem
     {
         public static List<Item> itemList = new List<Item>();
 
@@ -62,6 +62,36 @@ namespace MovingSim
         public Mesh GetMesh()
         {
             return meshFilter.mesh;
+        }
+
+        public string GetName()
+        {
+            return itemName;
+        }
+
+        public string GetDialogue()
+        {
+            return dialogue;
+        }
+
+        public string GetDescription()
+        {
+            return description;
+        }
+
+        public bool IsDestroying()
+        {
+            return destroying;
+        }
+
+        public bool IsKeeping()
+        {
+            return isKeeping;
+        }
+
+        public Item GetItem()
+        {
+            return this;
         }
     }
 }
