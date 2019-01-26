@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityStandardAssets.CrossPlatformInput;
+using MovingSim.UI;
 
 namespace MovingSim.Player
 {
@@ -27,11 +28,13 @@ namespace MovingSim.Player
         private Vector3 camForward;
         private Vector3 move;
 
-        private PlayerInputType inputType = PlayerInputType.Touch;
+        public PlayerInputType inputType { get; private set; }
 
-        private Item currentItemTarget;
+        private IItem currentItemTarget;
 
         private Ray mouseRay;
+
+        [SerializeField] private UIManager uiManager;
 
         private void Start()
         {
@@ -45,6 +48,25 @@ namespace MovingSim.Player
 
             aiAgent.updateRotation = false;
             aiAgent.updatePosition = true;
+
+            if(uiManager == null)
+            {
+                uiManager = FindObjectOfType<UIManager>();
+            }
+        }
+
+        private void Update()
+        {
+            
+            switch (inputType)
+            {
+                case PlayerInputType.Mouse:
+                    UpdateMouseMovement();
+                    break;
+                case PlayerInputType.Touch:
+                    UpdateTouchMovement();
+                    break;
+            }
         }
 
         private void FixedUpdate()
@@ -57,23 +79,23 @@ namespace MovingSim.Player
             if (Mathf.Abs(v) > 0 || Mathf.Abs(h) > 0)
             {
                 inputType = PlayerInputType.Keyboard;
-            }else if (Input.GetMouseButton(0)) // TODO: Check if user also has UI open.
+            }else if (Input.GetMouseButton(0) && (uiManager == null || !uiManager.uiOpen)) // TODO: Check if user also has UI open.
             {
                 inputType = PlayerInputType.Mouse;
             }
-            else if(Input.touchCount > 0)
+            else if(Input.touchCount > 0 && (uiManager == null || !uiManager.uiOpen))
             {
                 inputType = PlayerInputType.Touch;
             }
 
-            switch (inputType)
+            if (uiManager == null || !uiManager.uiOpen)
             {
-                case PlayerInputType.Keyboard:
-                    UpdateKeyboardMovement(v, h);
-                    break;
-                case PlayerInputType.Mouse:
-                    UpdateMouseMovement();
-                    break;
+                switch (inputType)
+                {
+                    case PlayerInputType.Keyboard:
+                        UpdateKeyboardMovement(v, h);
+                        break;
+                }
             }
         }
 
@@ -95,9 +117,12 @@ namespace MovingSim.Player
 
         private void UpdateMouseMovement()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (uiManager == null || !uiManager.uiOpen)
             {
-                SetScreenTargetPosition(Input.mousePosition);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SetScreenTargetPosition(Input.mousePosition);
+                }
             }
 
             UpdateAIMovement();
@@ -105,12 +130,15 @@ namespace MovingSim.Player
 
         private void UpdateTouchMovement()
         {
-            if (Input.touches.Length > 0)
+            if (uiManager == null || !uiManager.uiOpen)
             {
-                Touch touch = Input.touches[0];
-                if (touch.phase == TouchPhase.Began)
+                if (Input.touches.Length > 0)
                 {
-                    SetScreenTargetPosition(touch.position);
+                    Touch touch = Input.touches[0];
+                    if (touch.phase == TouchPhase.Began)
+                    {
+                        SetScreenTargetPosition(touch.position);
+                    }
                 }
             }
             
@@ -150,16 +178,25 @@ namespace MovingSim.Player
             {
                 target.position = hit.point;
 
-                if (currentItemTarget != null)
-                {
-                    currentItemTarget.HideOutline();
-                }
-
-                Item item = hit.transform.GetComponent<Item>();
+                IItem item = hit.transform.GetComponent<IItem>();
                 if (item != null)
                 {
-                    item.ShowOutline();
-                    currentItemTarget = item;
+                    if (item == currentItemTarget && !item.IsDestroying() && !item.IsKeeping())
+                    {
+                        if (uiManager != null) uiManager.OpenThrowOrKeep(item);
+                        item.HideOutline();
+                    }
+                    else if (!item.IsDestroying() && !item.IsKeeping())
+                    {
+                        if(currentItemTarget != null)
+                        {
+                            currentItemTarget.HideOutline();
+                        }
+                        item.ShowOutline();
+                        currentItemTarget = item;
+
+                        if(uiManager != null) uiManager.OpenDialogue(item);
+                    }
                 }
             }
         }
@@ -168,31 +205,41 @@ namespace MovingSim.Player
         {
             this.target = target;
         }
-
-        /*public void OnTriggerEnter(Collider collider)
+        
+        public void UnselectItem()
         {
-            Item item = collider.transform.GetComponent<Item>();
+            if (currentItemTarget != null)
+            {
+                if (uiManager != null) uiManager.CloseDialogue();
+                currentItemTarget.HideOutline();
+                currentItemTarget = null;
+            }
+        }
+
+        public void OnTriggerEnter(Collider collider)
+        {
+            ItemMovementTrigger item = collider.transform.GetComponent<ItemMovementTrigger>();
             if (item != null)
             {
                 if(currentItemTarget != null) currentItemTarget.HideOutline();
 
                 item.ShowOutline();
-                currentItemTarget = item;
+                currentItemTarget = item.item;
             }
         }
 
         public void OnTriggerExit(Collider collider)
         {
-            Item item = collider.transform.GetComponent<Item>();
+            ItemMovementTrigger item = collider.transform.GetComponent<ItemMovementTrigger>();
             if (item != null)
             {
-                if (currentItemTarget == item)
+                if (currentItemTarget == item.item)
                 {
                     currentItemTarget = null;
                 }
                 item.HideOutline();
             }
-        }*/
+        }
 
         public void OnDrawGizmos()
         {

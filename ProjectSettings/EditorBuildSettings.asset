@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Thaun/TestScene.unity
-    guid: ccdd03a6905779d4c91de4697b11e1db
+    path: Assets/Scenes/StarterScene.unity
+    guid: f647d36a2d7b0a84d9672455977f6407
+  - enabled: 1
+    path: Assets/Scenes/UI_Noodling.unity
+    guid: da4ebede38cfa5241ae5596462b28849
   m_configObjects: {}
