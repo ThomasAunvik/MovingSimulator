@@ -465,6 +465,24 @@ PrefabInstance:
       propertyPath: m_Carve
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 586174030, guid: 8466b5fe68d65dc459c2a3264e061d93, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 586174030, guid: 8466b5fe68d65dc459c2a3264e061d93, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886209536104349073, guid: 8466b5fe68d65dc459c2a3264e061d93,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3886209536104349073, guid: 8466b5fe68d65dc459c2a3264e061d93,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8466b5fe68d65dc459c2a3264e061d93, type: 3}
 --- !u!4 &908376455 stripped
@@ -539,6 +557,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993040531767773625, guid: 642a8161b7f6b7944a3e1dec62b3da11,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993040531767773625, guid: 642a8161b7f6b7944a3e1dec62b3da11,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 642a8161b7f6b7944a3e1dec62b3da11, type: 3}
@@ -815,6 +843,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1312839027, guid: 652fece8fbf97294c9b48fe81e9491a5, type: 3}
+      propertyPath: defaultParent
+      value: 
+      objectReference: {fileID: 1786562757}
     - target: {fileID: 986662891, guid: 652fece8fbf97294c9b48fe81e9491a5, type: 3}
       propertyPath: m_IsActive
       value: 0
