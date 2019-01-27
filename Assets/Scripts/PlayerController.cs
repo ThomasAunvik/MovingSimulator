@@ -14,7 +14,7 @@ namespace MovingSim.Player
         Mouse,
         Keyboard
     }
-
+    
     [RequireComponent(typeof(ThirdPersonCharacter))]
     public class PlayerController : MonoBehaviour
     {
@@ -36,6 +36,11 @@ namespace MovingSim.Player
 
         [SerializeField] private UIManager uiManager;
 
+        [SerializeField] private bool disableCharacter;
+        public Transform defaultParent;
+
+        
+
         private void Start()
         {
             character = GetComponent<ThirdPersonCharacter>();
@@ -46,7 +51,7 @@ namespace MovingSim.Player
             }
             aiAgent = GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
 
-            aiAgent.updateRotation = false;
+            aiAgent.updateRotation = true;
             aiAgent.updatePosition = true;
 
             if(uiManager == null)
@@ -88,7 +93,7 @@ namespace MovingSim.Player
                 inputType = PlayerInputType.Touch;
             }
 
-            if (uiManager == null || !uiManager.uiOpen)
+            if ((uiManager == null || !uiManager.uiOpen) && !disableCharacter)
             {
                 switch (inputType)
                 {
@@ -147,19 +152,27 @@ namespace MovingSim.Player
 
         private void UpdateAIMovement()
         {
+            if (disableCharacter) return;
+
             if (target != null && target.position != Vector3.zero)
             {
-                aiAgent.isStopped = false;
                 if (target != null)
                     aiAgent.SetDestination(target.position);
-
+                
                 if (aiAgent.remainingDistance > aiAgent.stoppingDistance)
+                {
+                    aiAgent.isStopped = false;
                     character.Move(aiAgent.desiredVelocity, false, false);
+                }
                 else
+                {
+                    aiAgent.isStopped = true;
                     character.Move(Vector3.zero, false, false);
+                }
             }
             else
             {
+                aiAgent.isStopped = true;
                 character.Move(Vector3.zero, false, false);
             }
         }
@@ -179,24 +192,28 @@ namespace MovingSim.Player
                 target.position = hit.point;
 
                 IItem item = hit.transform.GetComponent<IItem>();
+                ItemDrawer drawer = hit.transform.GetComponent<ItemDrawer>();
                 if (item != null)
                 {
-                    if (item == currentItemTarget && !item.IsDestroying() && !item.IsKeeping())
+                    if (item == currentItemTarget)
                     {
-                        if (uiManager != null) uiManager.OpenThrowOrKeep(item);
-                        item.HideOutline();
+                        OpenThrowOrKeepUIOnCurrentItem();
                     }
-                    else if (!item.IsDestroying() && !item.IsKeeping())
+                    else if (item.CanSelect())
                     {
-                        if(currentItemTarget != null)
+                        if (currentItemTarget != null)
                         {
                             currentItemTarget.HideOutline();
                         }
                         item.ShowOutline();
                         currentItemTarget = item;
 
-                        if(uiManager != null) uiManager.OpenDialogue(item);
+                        if (uiManager != null) uiManager.OpenDialogue(item);
                     }
+                }
+                else if(drawer != null)
+                {
+                    drawer.ToggleDrawer();
                 }
             }
         }
@@ -214,6 +231,14 @@ namespace MovingSim.Player
                 currentItemTarget.HideOutline();
                 currentItemTarget = null;
             }
+        }
+
+        public void OpenThrowOrKeepUIOnCurrentItem()
+        {
+            if (uiManager != null && currentItemTarget.CanSelect()) uiManager.OpenThrowOrKeep(currentItemTarget);
+            currentItemTarget.HideOutline();
+
+            // INVOKE
         }
 
         public void OnTriggerEnter(Collider collider)

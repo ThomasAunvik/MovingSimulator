@@ -26,6 +26,8 @@ namespace MovingSim.UI
         [SerializeField] private Transform meshTransfrom;
         [SerializeField] private Vector3 rotationSpeed;
 
+        public SadAudio audioManager;
+
         public bool uiOpen { get; private set; }
 
         private IItem currentItem;
@@ -37,7 +39,7 @@ namespace MovingSim.UI
         {
             if (uiOpen)
             {
-                meshTransfrom.Rotate(rotationSpeed * Time.deltaTime);
+                meshTransfrom.Rotate(rotationSpeed * Time.deltaTime, Space.World);
             }
         }
 
@@ -66,8 +68,25 @@ namespace MovingSim.UI
             if(dialogueEnumerator != null) StopCoroutine(dialogueEnumerator);
         }
 
+        public void OpenCurrentThrowOrKeep()
+        {
+            if (player == null)
+            {
+                player = FindObjectOfType<PlayerController>();
+            }
+
+            player.OpenThrowOrKeepUIOnCurrentItem();
+        }
+
         public void OpenThrowOrKeep(IItem item)
         {
+            if(audioManager == null)
+            {
+                audioManager = FindObjectOfType<SadAudio>();
+            }
+            if(audioManager != null) audioManager.setLevels(1, 1);
+
+
             if (descriptionEnumerator != null) StopCoroutine(descriptionEnumerator);
             descriptionEnumerator = StartCoroutine(DisplayText(item.GetDescription(), descriptionText));
 
@@ -79,15 +98,23 @@ namespace MovingSim.UI
             uiOpen = true;
             currentItem = item;
 
+            Item.MeshViewOffset offset = item.GetViewOffset();
+
             meshFilter.mesh = item.GetMesh();
             meshRenderer.materials = item.GetMaterials();
 
-            meshTransfrom.rotation = Quaternion.identity;
-            meshTransfrom.localScale = item.GetItem().transform.localScale;
+            meshTransfrom.localEulerAngles = offset.rotation;
+            meshTransfrom.localScale = offset.size * new Vector3(1,1,1);
         }
 
         public void CloseThrowOrKeeep()
         {
+            if (audioManager == null)
+            {
+                audioManager = FindObjectOfType<SadAudio>();
+            }
+            if (audioManager != null) audioManager.GetComponent<SadAudio>().setLevels(0, 0);
+
             if (player == null)
             {
                 player = FindObjectOfType<PlayerController>();
@@ -118,6 +145,12 @@ namespace MovingSim.UI
 
         public void TrashCurrentItem()
         {
+            if (audioManager == null)
+            {
+                audioManager = FindObjectOfType<SadAudio>();
+            }
+            if (audioManager != null) audioManager.GetComponent<SFX>().SFXhit(0, 1);
+
             if(player == null)
             {
                 player = FindObjectOfType<PlayerController>();
@@ -129,6 +162,12 @@ namespace MovingSim.UI
 
         public void KeepCurrentItem()
         {
+            if (audioManager == null)
+            {
+                audioManager = FindObjectOfType<SadAudio>();
+            }
+            if (audioManager != null) audioManager.GetComponent<SFX>().SFXhit(1, 0);
+
             if (player == null)
             {
                 player = FindObjectOfType<PlayerController>();

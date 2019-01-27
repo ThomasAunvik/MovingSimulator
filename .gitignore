@@ -50,4 +50,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# FMOD
 fmod_editor.log
+*.bank
+*.bank.meta
