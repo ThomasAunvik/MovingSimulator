@@ -20,8 +20,7 @@ public class AudioSettings : MonoBehaviour
 
     void CheckForMainCamera(){
         if(MainCamera == null){
-            MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            //audioListener = MainCamera.GetComponent<audioListener>();
+            MainCamera = Camera.main;
         }        
     }
 

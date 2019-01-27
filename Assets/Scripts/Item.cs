@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using MovingSim.Player;
 
 namespace MovingSim
 {
@@ -20,6 +21,7 @@ namespace MovingSim
 
         private MeshRenderer meshRenderer;
         private MeshFilter meshFilter;
+        private PlayerController player;
 
         private Material[] originalMaterials;
         [SerializeField] private Material[] outlineMaterials;
@@ -46,7 +48,8 @@ namespace MovingSim
 
             childItems = GetComponentsInChildren<Item>().ToList();
             childItems.RemoveAll(i => i.gameObject == gameObject);
-            //if (childItems.Contains(this)) childItems.Remove(this);
+
+            player = FindObjectOfType<PlayerController>();
         }
 
         public void ShowOutline()
@@ -62,6 +65,14 @@ namespace MovingSim
         public void Trash()
         {
             // TODO: SPAWN EFFECT
+            foreach(Transform trans in transform)
+            {
+                if (trans.GetComponent<Item>() != null)
+                {
+                    trans.SetParent(player.defaultParent);
+                }
+            }
+
             itemList.Remove(this);
             destroying = true;
             Destroy(gameObject, 0.5f);

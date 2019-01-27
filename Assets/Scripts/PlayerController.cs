@@ -37,6 +37,7 @@ namespace MovingSim.Player
         [SerializeField] private UIManager uiManager;
 
         [SerializeField] private bool disableCharacter;
+        public Transform defaultParent;
 
         private void Start()
         {
