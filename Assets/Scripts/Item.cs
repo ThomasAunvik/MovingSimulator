@@ -5,8 +5,16 @@ using System.Linq;
 
 namespace MovingSim
 {
+    [DisallowMultipleComponent]
     public class Item : MonoBehaviour, IItem
     {
+        [System.Serializable]
+        public struct MeshViewOffset
+        {
+            public float size;
+            public Vector3 rotation;
+        }
+
         public static List<Item> itemList = new List<Item>();
         private List<Item> childItems = new List<Item>();
 
@@ -21,6 +29,8 @@ namespace MovingSim
         public string dialogue;
         [TextArea]
         public string description;
+
+        [SerializeField] private MeshViewOffset viewOffset = new MeshViewOffset() { size = 1 };
 
         public bool destroying { get; private set; }
         public bool isKeeping { get; private set; }
@@ -119,6 +129,11 @@ namespace MovingSim
                 }
             }
             return !isKeeping && !destroying;
+        }
+
+        public MeshViewOffset GetViewOffset()
+        {
+            return viewOffset;
         }
     }
 }

@@ -151,8 +151,7 @@ namespace MovingSim.Player
             {
                 if (target != null)
                     aiAgent.SetDestination(target.position);
-
-                Debug.Log(aiAgent.desiredVelocity);
+                
                 if (aiAgent.remainingDistance > aiAgent.stoppingDistance)
                 {
                     aiAgent.isStopped = false;
@@ -191,8 +190,7 @@ namespace MovingSim.Player
                 {
                     if (item == currentItemTarget)
                     {
-                        if (uiManager != null && item.CanSelect()) uiManager.OpenThrowOrKeep(item);
-                        item.HideOutline();
+                        OpenThrowOrKeepUIOnCurrentItem();
                     }
                     else if (item.CanSelect())
                     {
@@ -226,6 +224,12 @@ namespace MovingSim.Player
                 currentItemTarget.HideOutline();
                 currentItemTarget = null;
             }
+        }
+
+        public void OpenThrowOrKeepUIOnCurrentItem()
+        {
+            if (uiManager != null && currentItemTarget.CanSelect()) uiManager.OpenThrowOrKeep(currentItemTarget);
+            currentItemTarget.HideOutline();
         }
 
         public void OnTriggerEnter(Collider collider)
