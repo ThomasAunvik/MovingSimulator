@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{859c6434-4749-45cf-be48-2b06284095da}">
+        <property name="assetPath">
+            <value>MovingSomber.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>92.16498866213152</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{c9039a26-82aa-41cb-bd69-8e6fa2fcc5eb}</destination>
+        </relationship>
+    </object>
+</objects>

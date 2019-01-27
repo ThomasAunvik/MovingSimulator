@@ -66,6 +66,16 @@ namespace MovingSim.UI
             if(dialogueEnumerator != null) StopCoroutine(dialogueEnumerator);
         }
 
+        public void OpenCurrentThrowOrKeep()
+        {
+            if (player == null)
+            {
+                player = FindObjectOfType<PlayerController>();
+            }
+
+            player.OpenThrowOrKeepUIOnCurrentItem();
+        }
+
         public void OpenThrowOrKeep(IItem item)
         {
             if (descriptionEnumerator != null) StopCoroutine(descriptionEnumerator);

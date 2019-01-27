@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{12617c0e-4099-422e-9e01-4adbfeea7c73}">
+        <property name="assetPath">
+            <value>BigPlasticBin2-Clean.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.49122916666666666</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{c9039a26-82aa-41cb-bd69-8e6fa2fcc5eb}</destination>
+        </relationship>
+    </object>
+</objects>
