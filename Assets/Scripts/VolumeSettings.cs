@@ -8,7 +8,7 @@ public class VolumeSettings : MonoBehaviour
 {
 
     string masterBusString = "Bus:/";
-    Bus masterBus;
+    static Bus masterBus;
 
     void Start()
     {
@@ -16,7 +16,7 @@ public class VolumeSettings : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void setVolume(float volume)
+    static public void setVolume(float volume)
     {
         masterBus.setVolume(volume);
     }
