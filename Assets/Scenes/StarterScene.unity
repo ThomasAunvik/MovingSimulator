@@ -294,6 +294,12 @@ MonoBehaviour:
   sceneLevels:
   - Level1
   mainMenuScene: 
+--- !u!1 &2062448737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1245955739389711131, guid: 3d458bd18fb90fa428df2ab44ded3fa9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1405590895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2100541145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -557,6 +563,11 @@ PrefabInstance:
       propertyPath: meshTransfrom
       value: 
       objectReference: {fileID: 2100541148}
+    - target: {fileID: 1190621223920965932, guid: 6ed2ae6288692cc4bbf47a7da86113a7,
+        type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 2062448737}
     - target: {fileID: 433154512, guid: 6ed2ae6288692cc4bbf47a7da86113a7, type: 3}
       propertyPath: m_IsActive
       value: 0

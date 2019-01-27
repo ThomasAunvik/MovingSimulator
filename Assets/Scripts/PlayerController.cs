@@ -39,6 +39,8 @@ namespace MovingSim.Player
         [SerializeField] private bool disableCharacter;
         public Transform defaultParent;
 
+        
+
         private void Start()
         {
             character = GetComponent<ThirdPersonCharacter>();
