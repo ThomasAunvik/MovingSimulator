@@ -7,7 +7,7 @@ public class AudioSettings : MonoBehaviour
     public float volume{get;set;}
 
     public Camera MainCamera;
-
+   
     //public AudioListener audioListener;
 
     void Update(){
@@ -25,7 +25,7 @@ public class AudioSettings : MonoBehaviour
     }
 
     void AdjustVolume(){
-        
+        VolumeSettings.setVolume(volume );
     }
 
 
