@@ -23,7 +23,7 @@ public class SFX : MonoBehaviour
     }
 
 
-    public void SFXhit(float keepVal, float trashVal) {
+   public void SFXhit(float keepVal, float trashVal) {
         keep.setValue(keepVal);
         trash.setValue(trashVal);
         instance.start();

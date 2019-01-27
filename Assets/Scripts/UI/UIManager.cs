@@ -26,6 +26,8 @@ namespace MovingSim.UI
         [SerializeField] private Transform meshTransfrom;
         [SerializeField] private Vector3 rotationSpeed;
 
+        public GameObject audioManager;
+
         public bool uiOpen { get; private set; }
 
         private IItem currentItem;
@@ -78,6 +80,7 @@ namespace MovingSim.UI
 
         public void OpenThrowOrKeep(IItem item)
         {
+            audioManager.GetComponent<SadAudio>().setLevels(1, 1);
             if (descriptionEnumerator != null) StopCoroutine(descriptionEnumerator);
             descriptionEnumerator = StartCoroutine(DisplayText(item.GetDescription(), descriptionText));
 
@@ -100,6 +103,7 @@ namespace MovingSim.UI
 
         public void CloseThrowOrKeeep()
         {
+            audioManager.GetComponent<SadAudio>().setLevels(0, 0);
             if (player == null)
             {
                 player = FindObjectOfType<PlayerController>();
@@ -130,6 +134,7 @@ namespace MovingSim.UI
 
         public void TrashCurrentItem()
         {
+            audioManager.GetComponent<SFX>().SFXhit(0, 1);
             if(player == null)
             {
                 player = FindObjectOfType<PlayerController>();
@@ -141,6 +146,7 @@ namespace MovingSim.UI
 
         public void KeepCurrentItem()
         {
+            audioManager.GetComponent<SFX>().SFXhit(1, 0);
             if (player == null)
             {
                 player = FindObjectOfType<PlayerController>();
