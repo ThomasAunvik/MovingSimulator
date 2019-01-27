@@ -14,7 +14,7 @@ namespace MovingSim.Player
         Mouse,
         Keyboard
     }
-
+    
     [RequireComponent(typeof(ThirdPersonCharacter))]
     public class PlayerController : MonoBehaviour
     {
@@ -35,6 +35,8 @@ namespace MovingSim.Player
         private Ray mouseRay;
 
         [SerializeField] private UIManager uiManager;
+
+        [SerializeField] private bool disableCharacter;
 
         private void Start()
         {
@@ -88,7 +90,7 @@ namespace MovingSim.Player
                 inputType = PlayerInputType.Touch;
             }
 
-            if (uiManager == null || !uiManager.uiOpen)
+            if ((uiManager == null || !uiManager.uiOpen) && !disableCharacter)
             {
                 switch (inputType)
                 {
@@ -147,6 +149,8 @@ namespace MovingSim.Player
 
         private void UpdateAIMovement()
         {
+            if (disableCharacter) return;
+
             if (target != null && target.position != Vector3.zero)
             {
                 if (target != null)

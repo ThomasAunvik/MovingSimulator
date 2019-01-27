@@ -293,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneLevels:
   - Level1
+  mainMenuScene: 
 --- !u!1001 &2100541145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -543,11 +544,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1190621223920965932, guid: 6ed2ae6288692cc4bbf47a7da86113a7,
         type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1190621223920965932, guid: 6ed2ae6288692cc4bbf47a7da86113a7,
-        type: 3}
       propertyPath: meshFilter
       value: 
       objectReference: {fileID: 2100541147}
@@ -561,20 +557,18 @@ PrefabInstance:
       propertyPath: meshTransfrom
       value: 
       objectReference: {fileID: 2100541148}
-    - target: {fileID: 1190621223125560521, guid: 6ed2ae6288692cc4bbf47a7da86113a7,
+    - target: {fileID: 1190621222502052403, guid: 6ed2ae6288692cc4bbf47a7da86113a7,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 433154512, guid: 6ed2ae6288692cc4bbf47a7da86113a7, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 886703325, guid: 6ed2ae6288692cc4bbf47a7da86113a7, type: 3}
+    - target: {fileID: 1190621223305284886, guid: 6ed2ae6288692cc4bbf47a7da86113a7,
+        type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 886703325, guid: 6ed2ae6288692cc4bbf47a7da86113a7, type: 3}
+    - target: {fileID: 1190621223305284886, guid: 6ed2ae6288692cc4bbf47a7da86113a7,
+        type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}

@@ -56,9 +56,9 @@ namespace MovingSim
         {
             currentScene++;
             int previousScene = currentScene - 1;
-            if (previousScene > 0)
+            if (previousScene >= 0)
             {
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(3);
                 AsyncOperation unloadScene = SceneManager.UnloadSceneAsync(sceneLevels[previousScene]);
                 while (!unloadScene.isDone)
                 {
@@ -80,7 +80,6 @@ namespace MovingSim
             {
                 string level = mainMenuScene;
                 AsyncOperation sceneOperation = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
-                sceneOperation.completed += SceneLoaded;
                 while (!sceneOperation.isDone)
                 {
                     yield return null;
