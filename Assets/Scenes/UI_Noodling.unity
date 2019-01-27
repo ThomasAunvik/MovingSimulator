@@ -229,11 +229,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 80249165486015535, guid: 35570a9d9a2a1704f8860911f1821176,
-        type: 3}
-      propertyPath: orthographic size
-      value: 5.3
-      objectReference: {fileID: 0}
     - target: {fileID: 80249165486015528, guid: 35570a9d9a2a1704f8860911f1821176,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -291,28 +286,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35570a9d9a2a1704f8860911f1821176, type: 3}
---- !u!1 &632536152 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 80249165486015533, guid: 35570a9d9a2a1704f8860911f1821176,
-    type: 3}
-  m_PrefabInstance: {fileID: 632536151}
-  m_PrefabAsset: {fileID: 0}
---- !u!111 &632536153
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 632536152}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 8b7d27a65de2e344cb24a5aca4c5bade, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 8b7d27a65de2e344cb24a5aca4c5bade, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1105066177 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6244891591610232807, guid: cc5579a0592a8ed4fa5c1e79d13c97d7,

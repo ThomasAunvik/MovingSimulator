@@ -14,6 +14,7 @@ namespace MovingSim
 
         bool IsDestroying();
         bool IsKeeping();
+        bool CanSelect();
 
         void ShowOutline();
         void HideOutline();
@@ -21,5 +22,7 @@ namespace MovingSim
         void Keep();
         Material[] GetMaterials();
         Mesh GetMesh();
+
+        Item.MeshViewOffset GetViewOffset();
     }
 }

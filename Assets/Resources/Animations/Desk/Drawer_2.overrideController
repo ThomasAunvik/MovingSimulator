@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Drawer_2
+  m_Controller: {fileID: 9100000, guid: 8896b663335ebc5458be9d08715cc106, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 6ecc23791943bc544a44628a5f047d51, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 17b2a5ddd3ad947469326a263f1bf585, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a9945781afe3e1346bfdb361e15c2376, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 38cd6ed7de8df224c840ed7336d0b940, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8695dff416c97f0499e73c111046af93, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 88292437f1b3ec1408e0e64bf893f8bc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cc48a4bc18f1e0f47a5eb7fe9bd994f5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 19fb0948ba718aa458bf97dde442e346, type: 2}

@@ -37,7 +37,7 @@ namespace MovingSim.UI
         {
             if (uiOpen)
             {
-                meshTransfrom.Rotate(rotationSpeed * Time.deltaTime);
+                meshTransfrom.Rotate(rotationSpeed * Time.deltaTime, Space.World);
             }
         }
 
@@ -79,11 +79,13 @@ namespace MovingSim.UI
             uiOpen = true;
             currentItem = item;
 
+            Item.MeshViewOffset offset = item.GetViewOffset();
+
             meshFilter.mesh = item.GetMesh();
             meshRenderer.materials = item.GetMaterials();
 
-            meshTransfrom.rotation = Quaternion.identity;
-            meshTransfrom.localScale = item.GetItem().transform.localScale;
+            meshTransfrom.localEulerAngles = offset.rotation;
+            meshTransfrom.localScale = offset.size * new Vector3(1,1,1);
         }
 
         public void CloseThrowOrKeeep()
