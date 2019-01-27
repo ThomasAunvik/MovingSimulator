@@ -15,10 +15,10 @@ public class SadAudio : MonoBehaviour
     private ParameterInstance start;
 
     [Range(0,1)]
-    public float sadLevel;
+    private float sadLevel;
     [Range(0, 1)]
-    public float observingLevel;
-    public bool gameStarted;
+    private float observingLevel;
+    private static bool gameStarted = false;
 
     private float lerpSad = 0f;
     private float lerpObs = 0f;
@@ -45,5 +45,13 @@ public class SadAudio : MonoBehaviour
         }
     }
 
+    public static void startGame() {
+        gameStarted = true;
+    }
+
+    public void setLevels(float s, float o) {
+        sadLevel = s;
+        observingLevel = o;
+    }
    
 }
