@@ -13,6 +13,7 @@ namespace MovingSim
 
         Rigidbody[] rigidbodies;
         [SerializeField] private string[] sceneLevels;
+        [SerializeField] private string mainMenuScene;
         int currentScene;
 
         void Start()
@@ -68,6 +69,16 @@ namespace MovingSim
             if (currentScene < sceneLevels.Length)
             {
                 string level = sceneLevels[currentScene];
+                AsyncOperation sceneOperation = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
+                sceneOperation.completed += SceneLoaded;
+                while (!sceneOperation.isDone)
+                {
+                    yield return null;
+                }
+            }
+            else
+            {
+                string level = mainMenuScene;
                 AsyncOperation sceneOperation = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
                 sceneOperation.completed += SceneLoaded;
                 while (!sceneOperation.isDone)
