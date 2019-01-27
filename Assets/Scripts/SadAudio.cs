@@ -12,11 +12,13 @@ public class SadAudio : MonoBehaviour
     private EventInstance instance;
     private ParameterInstance sad;
     private ParameterInstance observing;
+    private ParameterInstance start;
 
     [Range(0,1)]
     public float sadLevel;
     [Range(0, 1)]
     public float observingLevel;
+    public bool gameStarted;
 
     private float lerpSad = 0f;
     private float lerpObs = 0f;
@@ -24,7 +26,8 @@ public class SadAudio : MonoBehaviour
     public void Start() {
         instance = RuntimeManager.CreateInstance(eventPath);
         instance.getParameterByIndex(0, out sad);
-        instance.getParameterByIndex(1, out observing);
+        instance.getParameterByIndex(2, out observing);
+        instance.getParameterByIndex(1, out start);
         instance.start();
 
     }
@@ -37,5 +40,10 @@ public class SadAudio : MonoBehaviour
 
         sad.setValue(lerpSad);
         observing.setValue(lerpObs);
+        if (gameStarted) {
+            start.setValue(0.5f);
+        }
     }
+
+   
 }
