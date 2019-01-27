@@ -22,5 +22,7 @@ namespace MovingSim
         void Keep();
         Material[] GetMaterials();
         Mesh GetMesh();
+
+        Item.MeshViewOffset GetViewOffset();
     }
 }

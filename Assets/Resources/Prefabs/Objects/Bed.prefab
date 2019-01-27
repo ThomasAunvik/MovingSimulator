@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 371568691}
   - component: {fileID: 371568690}
   - component: {fileID: 371568693}
-  - component: {fileID: 2330269905589465380}
   m_Layer: 0
   m_Name: Bed
   m_TagString: Untagged
@@ -147,23 +146,9 @@ MonoBehaviour:
   itemName: Bed
   dialogue: My bed, where I've spent 1/3 of my life.
   description: It's just a generic floor
---- !u!114 &2330269905589465380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371568689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df473515aeaa3414ab8007a35391e350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMaterials: []
-  ignoreChildren: 0
-  itemName: 
-  dialogue: 
-  description: 
+  viewOffset:
+    size: 1
+    rotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &4726092131614596803
 PrefabInstance:
   m_ObjectHideFlags: 0

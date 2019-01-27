@@ -29,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993040531767742239}
-  m_LocalRotation: {x: 0.000000006903087, y: -0.94880956, z: 0.000000020736941, w: 0.31584883}
+  m_LocalRotation: {x: 0.000000020344142, y: -0.8504287, z: 0.000000007986817, w: -0.5260903}
   m_LocalPosition: {x: -1.918, y: 0.64, z: -0.072}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -143.17601, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -243.483, z: 0}
 --- !u!33 &1993040531764744991
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -143,9 +143,12 @@ MonoBehaviour:
   ignoreChildren: 0
   itemName: Mug from Kris
   dialogue: An ironic mug.
-  description: Kris gave me this for our 3 month anniversary. Weused to make hot chocolate
-    together, and wanted me to have a lame, ironic mug to drink from. I've never really
-    had a favorite mug before, but i think this one counts. Even though we didn't
-    work out i don't feel any resentment, because i learned a lot about myself along
-    the way. It's been so long since we've talked, and i'm not sure if my heart can
-    handle saying good bye. I'm getting sick of saying good bye to people.
+  description: Kris gave me this for our 3 month anniversary. We used to make hot
+    chocolate together, and wanted me to have a lame, ironic mug to drink from. I've
+    never really had a favorite mug before, but i think this one counts. Even though
+    we didn't work out i don't feel any resentment, because i learned a lot about
+    myself along the way. It's been so long since we've talked, and i'm not sure if
+    my heart can handle saying good bye. I'm getting sick of saying good bye to people.
+  viewOffset:
+    size: 10
+    rotation: {x: 0, y: -120, z: 0}

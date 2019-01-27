@@ -5,6 +5,7 @@ using MovingSim.Player;
 
 namespace MovingSim
 {
+    [DisallowMultipleComponent]
     public class ItemMovementTrigger : MonoBehaviour, IItem
     {
         public Item item { get; private set; }
@@ -90,6 +91,11 @@ namespace MovingSim
         public bool CanSelect()
         {
             return item.CanSelect();
+        }
+
+        public Item.MeshViewOffset GetViewOffset()
+        {
+            return item.GetViewOffset();
         }
     }
 }
