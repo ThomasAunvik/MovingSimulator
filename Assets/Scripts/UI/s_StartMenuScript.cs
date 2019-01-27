@@ -13,6 +13,7 @@ public class s_StartMenuScript : MonoBehaviour
 
     // Update is called once per frame
     public void StartGame(){
+        SadAudio.StartGame();
         SceneManager.LoadScene("StarterScene");
     }
 }
