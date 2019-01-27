@@ -597,7 +597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1190621222502052402
 RectTransform:
   m_ObjectHideFlags: 0
@@ -697,6 +697,7 @@ RectTransform:
   - {fileID: 1190621223356686513}
   - {fileID: 1190621222885342423}
   - {fileID: 7694960872019262809}
+  - {fileID: 1190621223646255987}
   m_Father: {fileID: 1190621223920965934}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1439,8 +1440,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1190621223920965934}
-  m_RootOrder: 3
+  m_Father: {fileID: 1190621223125560534}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1725,7 +1726,6 @@ RectTransform:
   - {fileID: 1190621223125560534}
   - {fileID: 1190621222502052402}
   - {fileID: 433154513}
-  - {fileID: 1190621223646255987}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1817,6 +1817,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   meshTransfrom: {fileID: 0}
   rotationSpeed: {x: 0, y: 10, z: 0}
+  audioManager: {fileID: 0}
 --- !u!1 &1190621223975128020
 GameObject:
   m_ObjectHideFlags: 0
