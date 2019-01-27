@@ -235,6 +235,8 @@ namespace MovingSim.Player
         {
             if (uiManager != null && currentItemTarget.CanSelect()) uiManager.OpenThrowOrKeep(currentItemTarget);
             currentItemTarget.HideOutline();
+
+            // INVOKE
         }
 
         public void OnTriggerEnter(Collider collider)
