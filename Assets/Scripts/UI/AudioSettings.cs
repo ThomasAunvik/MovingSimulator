@@ -13,13 +13,20 @@ public class AudioSettings : MonoBehaviour
     //public AudioListener audioListener;
 
     void Awake(){
-        DontDestroyOnLoad(this.GameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update(){
+        if (VolumeSlider == null)
+        {
+            GameObject obj = GameObject.Find("AudioSlider");
+            if (obj != null)
+            {
+                VolumeSlider = obj.GetComponent<Slider>();
+            }
+        }
 
         CheckForMainCamera();
-        CheckForVolumeSlider();
         UpdateVolumeVariable();
         AdjustVolumeSetting();
 
@@ -31,17 +38,10 @@ public class AudioSettings : MonoBehaviour
         }        
     }
 
-    Slider VolumeSlider;
-
-    void CheckForVolumeSlider(){
-        if(VolumeSlider == null){
-            VolumeSlider = GameObject.Find("AudioSlider").GetComponent<Slider>();
-        }
-    }
+    [SerializeField] private Slider VolumeSlider;
 
     void UpdateVolumeVariable(){
         volume = VolumeSlider.value;
-
     }
 
     void AdjustVolumeSetting(){

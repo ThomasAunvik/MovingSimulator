@@ -45,7 +45,7 @@ public class SadAudio : MonoBehaviour
         }
     }
 
-    public static void startGame() {
+    public static void StartGame() {
         gameStarted = true;
     }
 
