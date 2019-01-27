@@ -4,78 +4,82 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+namespace MovingSim
 {
-    public static LevelManager instance;
 
-    Rigidbody[] rigidbodies;
-    [SerializeField] private string[] sceneLevels;
-    int currentScene;
-
-    void Start()
+    public class LevelManager : MonoBehaviour
     {
-        instance = this;
+        public static LevelManager instance;
 
-        currentScene = -1;
-        LoadNextScene();
-    }
+        Rigidbody[] rigidbodies;
+        [SerializeField] private string[] sceneLevels;
+        int currentScene;
 
-    public void LoadNextScene()
-    {
-        if (currentScene < sceneLevels.Length)
+        void Start()
         {
+            instance = this;
+
+            currentScene = -1;
+            LoadNextScene();
+        }
+
+        public void LoadNextScene()
+        {
+            if (currentScene < sceneLevels.Length)
+            {
+                StartCoroutine(LoadNextLevelAsync());
+            }
+        }
+
+        public void EndGame()
+        {
+            if (rigidbodies != null)
+            {
+                for (int i = 0; i < rigidbodies.Length; i++)
+                {
+                    Rigidbody rb = rigidbodies[i];
+                    if (rb == null) continue;
+                    rb.useGravity = true;
+                    rb.isKinematic = false;
+
+                    float randomX = UnityEngine.Random.Range(-1, 1);
+                    float randomY = UnityEngine.Random.Range(-1, 1);
+                    float randomZ = UnityEngine.Random.Range(-1, 1);
+                    rb.angularVelocity = new Vector3(randomX, randomY, randomZ);
+                }
+            }
             StartCoroutine(LoadNextLevelAsync());
         }
-    }
 
-    public void EndGame()
-    {
-        if(rigidbodies != null)
+        IEnumerator LoadNextLevelAsync()
         {
-            for(int i = 0; i < rigidbodies.Length; i++)
+            currentScene++;
+            int previousScene = currentScene - 1;
+            if (previousScene > 0)
             {
-                Rigidbody rb = rigidbodies[i];
-                if (rb == null) continue;
-                rb.useGravity = true;
-                rb.isKinematic = false;
-
-                float randomX = UnityEngine.Random.Range(-1, 1);
-                float randomY = UnityEngine.Random.Range(-1, 1);
-                float randomZ = UnityEngine.Random.Range(-1, 1);
-                rb.angularVelocity = new Vector3(randomX, randomY, randomZ);
+                yield return new WaitForSeconds(1);
+                AsyncOperation unloadScene = SceneManager.UnloadSceneAsync(sceneLevels[previousScene]);
+                while (!unloadScene.isDone)
+                {
+                    yield return null;
+                }
             }
-        }
-        StartCoroutine(LoadNextLevelAsync());
-    }
 
-    IEnumerator LoadNextLevelAsync()
-    {
-        currentScene++;
-        int previousScene = currentScene - 1;
-        if(previousScene > 0)
-        {
-            yield return new WaitForSeconds(1);
-            AsyncOperation unloadScene = SceneManager.UnloadSceneAsync(sceneLevels[previousScene]);
-            while (!unloadScene.isDone)
+            if (currentScene < sceneLevels.Length)
             {
-                yield return null;
+                string level = sceneLevels[currentScene];
+                AsyncOperation sceneOperation = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
+                sceneOperation.completed += SceneLoaded;
+                while (!sceneOperation.isDone)
+                {
+                    yield return null;
+                }
             }
         }
 
-        if (currentScene < sceneLevels.Length)
+        private void SceneLoaded(AsyncOperation obj)
         {
-            string level = sceneLevels[currentScene];
-            AsyncOperation sceneOperation = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
-            sceneOperation.completed += SceneLoaded;
-            while (!sceneOperation.isDone)
-            {
-                yield return null;
-            }
+            rigidbodies = FindObjectsOfType<Rigidbody>();
         }
-    }
-
-    private void SceneLoaded(AsyncOperation obj)
-    {
-        rigidbodies = FindObjectsOfType<Rigidbody>();
     }
 }

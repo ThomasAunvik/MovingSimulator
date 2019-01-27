@@ -14,6 +14,7 @@ namespace MovingSim
 
         bool IsDestroying();
         bool IsKeeping();
+        bool CanSelect();
 
         void ShowOutline();
         void HideOutline();

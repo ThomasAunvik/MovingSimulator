@@ -179,24 +179,29 @@ namespace MovingSim.Player
                 target.position = hit.point;
 
                 IItem item = hit.transform.GetComponent<IItem>();
+                ItemDrawer drawer = hit.transform.GetComponent<ItemDrawer>();
                 if (item != null)
                 {
-                    if (item == currentItemTarget && !item.IsDestroying() && !item.IsKeeping())
+                    if (item == currentItemTarget)
                     {
-                        if (uiManager != null) uiManager.OpenThrowOrKeep(item);
+                        if (uiManager != null && item.CanSelect()) uiManager.OpenThrowOrKeep(item);
                         item.HideOutline();
                     }
-                    else if (!item.IsDestroying() && !item.IsKeeping())
+                    else if (item.CanSelect())
                     {
-                        if(currentItemTarget != null)
+                        if (currentItemTarget != null)
                         {
                             currentItemTarget.HideOutline();
                         }
                         item.ShowOutline();
                         currentItemTarget = item;
 
-                        if(uiManager != null) uiManager.OpenDialogue(item);
+                        if (uiManager != null) uiManager.OpenDialogue(item);
                     }
+                }
+                else if(drawer != null)
+                {
+                    drawer.ToggleDrawer();
                 }
             }
         }

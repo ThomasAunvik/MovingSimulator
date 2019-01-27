@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/StarterScene.unity
     guid: f647d36a2d7b0a84d9672455977f6407
   - enabled: 1
-    path: Assets/Scenes/UI_Noodling.unity
-    guid: da4ebede38cfa5241ae5596462b28849
+    path: Assets/Scenes/Levels/Level1.unity
+    guid: 19cbf4b8e9cd15a4da73f251b7305216
   m_configObjects: {}

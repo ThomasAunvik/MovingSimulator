@@ -86,5 +86,10 @@ namespace MovingSim
         {
             return item;
         }
+
+        public bool CanSelect()
+        {
+            return item.CanSelect();
+        }
     }
 }

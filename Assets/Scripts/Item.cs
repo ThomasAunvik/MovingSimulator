@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace MovingSim
 {
     public class Item : MonoBehaviour, IItem
     {
         public static List<Item> itemList = new List<Item>();
+        private List<Item> childItems = new List<Item>();
 
         private MeshRenderer meshRenderer;
         private MeshFilter meshFilter;
 
         private Material[] originalMaterials;
         [SerializeField] private Material[] outlineMaterials;
+        [SerializeField] private bool ignoreChildren;
 
         public string itemName;
         public string dialogue;
@@ -29,6 +32,9 @@ namespace MovingSim
             meshFilter = GetComponent<MeshFilter>();
 
             itemList.Add(this);
+
+            childItems = GetComponentsInChildren<Item>().ToList();
+            if (childItems.Contains(this)) childItems.Remove(this);
         }
 
         public void ShowOutline()
@@ -92,6 +98,25 @@ namespace MovingSim
         public Item GetItem()
         {
             return this;
+        }
+
+        public bool CanSelect()
+        {
+            if (!ignoreChildren)
+            {
+                for (int i = 0; i < childItems.Count; i++)
+                {
+                    Item item = childItems[i];
+                    if (item != null)
+                    {
+                        if (item.CanSelect())
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return !isKeeping && !destroying;
         }
     }
 }
