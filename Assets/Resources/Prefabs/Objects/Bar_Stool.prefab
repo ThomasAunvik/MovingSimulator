@@ -140,6 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMaterials:
   - {fileID: 2100000, guid: 414260d11cbc94d4b8d9c3984b7e801b, type: 2}
-  itemName: 
-  dialogue: 
-  description: 
+  ignoreChildren: 0
+  itemName: Foldable Chair
+  dialogue: A simple, foldable chair.
+  description: I sit on this when I'm not sitting in my bed. It's a bit unstable,
+    but it works.

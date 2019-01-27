@@ -140,6 +140,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMaterials:
   - {fileID: 2100000, guid: 414260d11cbc94d4b8d9c3984b7e801b, type: 2}
-  itemName: 
-  dialogue: 
-  description: 
+  ignoreChildren: 0
+  itemName: Keyboard
+  dialogue: A keyboard, for playing keyboard music.
+  description: I wanted to try something new, so I bought a used keyboard online from
+    my allowance savings when I was 14. In the end I never learned how to actually
+    play it properly, but maby I will someday.

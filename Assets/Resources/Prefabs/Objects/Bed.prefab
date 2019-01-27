@@ -143,9 +143,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMaterials:
   - {fileID: 2100000, guid: 414260d11cbc94d4b8d9c3984b7e801b, type: 2}
-  itemName: 
-  dialogue: Dis bed is gud
-  description: Gud
+  ignoreChildren: 0
+  itemName: Bed
+  dialogue: My bed, where I've spent 1/3 of my life.
+  description: It's just a generic floor
 --- !u!114 &2330269905589465380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterials: []
+  ignoreChildren: 0
   itemName: 
   dialogue: 
   description: 

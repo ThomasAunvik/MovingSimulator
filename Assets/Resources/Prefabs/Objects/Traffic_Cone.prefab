@@ -140,6 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMaterials:
   - {fileID: 2100000, guid: 414260d11cbc94d4b8d9c3984b7e801b, type: 2}
-  itemName: 
-  dialogue: 
-  description: 
+  ignoreChildren: 0
+  itemName: Traffic Cone
+  dialogue: Heh, it's the legendary traffic cone.
+  description: I blacked out right after I stole this, and woke up in my garden wearing
+    a partyhat. But it's kinda funny to look back on.

@@ -140,6 +140,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMaterials:
   - {fileID: 2100000, guid: 414260d11cbc94d4b8d9c3984b7e801b, type: 2}
-  itemName: 
-  dialogue: 
-  description: 
+  ignoreChildren: 0
+  itemName: Mug from Kris
+  dialogue: An ironic mug.
+  description: Kris gave me this for our 3 month anniversary. Weused to make hot chocolate
+    together, and wanted me to have a lame, ironic mug to drink from. I've never really
+    had a favorite mug before, but i think this one counts. Even though we didn't
+    work out i don't feel any resentment, because i learned a lot about myself along
+    the way. It's been so long since we've talked, and i'm not sure if my heart can
+    handle saying good bye. I'm getting sick of saying good bye to people.

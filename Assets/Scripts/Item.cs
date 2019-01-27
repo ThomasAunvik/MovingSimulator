@@ -19,6 +19,7 @@ namespace MovingSim
 
         public string itemName;
         public string dialogue;
+        [TextArea]
         public string description;
 
         public bool destroying { get; private set; }
@@ -34,7 +35,8 @@ namespace MovingSim
             itemList.Add(this);
 
             childItems = GetComponentsInChildren<Item>().ToList();
-            if (childItems.Contains(this)) childItems.Remove(this);
+            childItems.RemoveAll(i => i.gameObject == gameObject);
+            //if (childItems.Contains(this)) childItems.Remove(this);
         }
 
         public void ShowOutline()

@@ -143,9 +143,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMaterials:
   - {fileID: 2100000, guid: 414260d11cbc94d4b8d9c3984b7e801b, type: 2}
-  itemName: 
-  dialogue: 
-  description: 
+  ignoreChildren: 0
+  itemName: Closet
+  dialogue: The closet, where my clothes come out everyday. No wonder people used
+    to tell my clothes looked gay.
+  description: I think there's a little pocket dimension in there somewhere, beacuse
+    some of my clothes keep disappearing.
 --- !u!1001 &1111390724157805844
 PrefabInstance:
   m_ObjectHideFlags: 0

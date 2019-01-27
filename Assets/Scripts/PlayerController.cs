@@ -46,7 +46,7 @@ namespace MovingSim.Player
             }
             aiAgent = GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
 
-            aiAgent.updateRotation = false;
+            aiAgent.updateRotation = true;
             aiAgent.updatePosition = true;
 
             if(uiManager == null)
@@ -149,17 +149,24 @@ namespace MovingSim.Player
         {
             if (target != null && target.position != Vector3.zero)
             {
-                aiAgent.isStopped = false;
                 if (target != null)
                     aiAgent.SetDestination(target.position);
 
+                Debug.Log(aiAgent.desiredVelocity);
                 if (aiAgent.remainingDistance > aiAgent.stoppingDistance)
+                {
+                    aiAgent.isStopped = false;
                     character.Move(aiAgent.desiredVelocity, false, false);
+                }
                 else
+                {
+                    aiAgent.isStopped = true;
                     character.Move(Vector3.zero, false, false);
+                }
             }
             else
             {
+                aiAgent.isStopped = true;
                 character.Move(Vector3.zero, false, false);
             }
         }
