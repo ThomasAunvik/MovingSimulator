@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4507165, g: 0.50066555, b: 0.5748711, a: 1}
+  m_IndirectSpecularColor: {r: 0.45071632, g: 0.5006655, b: 0.57487094, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -486,10 +486,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1786562757}
     m_Modifications:
-    - target: {fileID: 371568689, guid: 8466b5fe68d65dc459c2a3264e061d93, type: 3}
-      propertyPath: m_Name
-      value: Bed
-      objectReference: {fileID: 0}
     - target: {fileID: 16336854044797915, guid: 8466b5fe68d65dc459c2a3264e061d93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -544,6 +540,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371568689, guid: 8466b5fe68d65dc459c2a3264e061d93, type: 3}
+      propertyPath: m_Name
+      value: Bed
       objectReference: {fileID: 0}
     - target: {fileID: 371568691, guid: 8466b5fe68d65dc459c2a3264e061d93, type: 3}
       propertyPath: m_Carve
@@ -689,7 +689,7 @@ PrefabInstance:
     - target: {fileID: 1918304323293921821, guid: cfa744192fd7e194b997f550d4b9bf22,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 1918304323293921821, guid: cfa744192fd7e194b997f550d4b9bf22,
         type: 3}
@@ -755,6 +755,21 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918304323293921818, guid: cfa744192fd7e194b997f550d4b9bf22,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918304323293921818, guid: cfa744192fd7e194b997f550d4b9bf22,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918304323293921818, guid: cfa744192fd7e194b997f550d4b9bf22,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfa744192fd7e194b997f550d4b9bf22, type: 3}
@@ -907,9 +922,85 @@ Transform:
   - {fileID: 2038875961}
   - {fileID: 908376455}
   - {fileID: 811822910}
+  - {fileID: 1805632988}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1805632987
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1786562757}
+    m_Modifications:
+    - target: {fileID: 2008636698948360534, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_Name
+      value: Fairylights Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 2.5638101e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.99999934
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000021855678
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0011730645
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 179.86601
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b0af37d475e0b724ea323e10ef4a108d, type: 3}
+--- !u!4 &1805632988 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2008636698948715894, guid: b0af37d475e0b724ea323e10ef4a108d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1805632987}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1832800898
 PrefabInstance:
   m_ObjectHideFlags: 0
