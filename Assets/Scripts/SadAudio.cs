@@ -18,7 +18,7 @@ public class SadAudio : MonoBehaviour
     public float sadLevel;
     [Range(0, 1)]
     public float observingLevel;
-    public bool gameStarted;
+    private static bool gameStarted = false;
 
     private float lerpSad = 0f;
     private float lerpObs = 0f;
@@ -45,5 +45,8 @@ public class SadAudio : MonoBehaviour
         }
     }
 
+    public static void startGame() {
+        gameStarted = true;
+    }
    
 }
