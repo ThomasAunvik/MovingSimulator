@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695262200}
-  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.48000026, y: 2.7850332, z: 1.6780005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -121,7 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df473515aeaa3414ab8007a35391e350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMaterials: []
+  outlineMaterials:
+  - {fileID: 2100000, guid: 414260d11cbc94d4b8d9c3984b7e801b, type: 2}
   ignoreChildren: 0
   itemName: Fairylights
   dialogue: My charming fairy lights

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class AudioSettings : MonoBehaviour
 {
-    
+    public static AudioSettings audioSettings;
+
     public float volume{get;set;}
 
     public Camera MainCamera;
@@ -13,6 +14,13 @@ public class AudioSettings : MonoBehaviour
     //public AudioListener audioListener;
 
     void Awake(){
+        if (audioSettings != null)
+        {
+            Destroy(gameObject);
+        }
+
+        audioSettings = this;
+
         DontDestroyOnLoad(gameObject);
     }
 
