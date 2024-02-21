@@ -6,52 +6,81 @@ using FMOD.Studio;
 
 public class SadAudio : MonoBehaviour
 {
-    [FMODUnity.EventRef]
-    public string eventPath = "";
+	public EventReference PlayerStateEvent;
 
-    private EventInstance instance;
-    private ParameterInstance sad;
-    private ParameterInstance observing;
-    private ParameterInstance start;
-
-    [Range(0,1)]
-    private float sadLevel;
-    [Range(0, 1)]
-    private float observingLevel;
-    private static bool gameStarted = false;
-
-    private float lerpSad = 0f;
-    private float lerpObs = 0f;
-
-    public void Start() {
-        instance = RuntimeManager.CreateInstance(eventPath);
-        instance.getParameterByIndex(0, out sad);
-        instance.getParameterByIndex(2, out observing);
-        instance.getParameterByIndex(1, out start);
-        instance.start();
-
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        lerpSad = Mathf.Lerp(lerpSad, sadLevel, 0.05f);
-        lerpObs = Mathf.Lerp(lerpObs, observingLevel, 0.05f);
+	private EventInstance instance;
 
 
-        sad.setValue(lerpSad);
-        observing.setValue(lerpObs);
-        if (gameStarted) {
-            start.setValue(0.5f);
-        }
-    }
+	[Range(0, 1)]
+	private float sadLevel;
+	[Range(0, 1)]
+	private float observingLevel;
+	private static bool gameStarted = false;
 
-    public static void StartGame() {
-        gameStarted = true;
-    }
+	PARAMETER_ID sadParameterId, observingParameterId, startParameterId;
 
-    public void setLevels(float s, float o) {
-        sadLevel = s;
-        observingLevel = o;
-    }
-   
+	private float lerpSad = 0f;
+	private float lerpObs = 0f;
+
+	public void Start()
+	{
+		instance = RuntimeManager.CreateInstance(PlayerStateEvent);
+		instance.start();
+
+		instance.getDescription(out EventDescription sadEventDescription);
+		sadEventDescription.getParameterDescriptionByName("sad",
+			out PARAMETER_DESCRIPTION sadParameterDescription
+		);
+		sadParameterId = sadParameterDescription.id;
+
+		instance.getDescription(out EventDescription observingEventDescription);
+		observingEventDescription.getParameterDescriptionByName("observing",
+			out PARAMETER_DESCRIPTION observingParameterDescription
+		);
+		observingParameterId = observingParameterDescription.id;
+
+		instance.getDescription(out EventDescription startEventDescription);
+		startEventDescription.getParameterDescriptionByName("start",
+			out PARAMETER_DESCRIPTION startParameterDescription
+		);
+		startParameterId = startParameterDescription.id;
+	}
+	// Update is called once per frame
+	void Update()
+	{
+		lerpSad = Mathf.Lerp(lerpSad, sadLevel, 0.05f);
+		lerpObs = Mathf.Lerp(lerpObs, observingLevel, 0.05f);
+
+
+		instance.setParameterByID(sadParameterId, lerpSad);
+		instance.setParameterByID(observingParameterId, lerpObs);
+		if (gameStarted)
+		{
+			instance.setParameterByID(startParameterId, 0.5f);
+		}
+	}
+
+	public static void StartGame()
+	{
+		gameStarted = true;
+	}
+
+	public void setLevels(float s, float o)
+	{
+		sadLevel = s;
+		observingLevel = o;
+	}
+
+	void OnDestroy()
+	{
+		StopAllPlayerEvents();
+
+		instance.release();
+	}
+
+	void StopAllPlayerEvents()
+	{
+		Bus playerBus = RuntimeManager.GetBus("bus:/player");
+		playerBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+	}
 }
